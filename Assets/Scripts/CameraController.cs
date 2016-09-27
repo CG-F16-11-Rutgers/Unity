@@ -17,16 +17,20 @@ public class CameraController : MonoBehaviour {
         CheckBounds();
     }
 
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (Input.GetButton("Fire3")) {
-            transform.Rotate(0.0f, Input.GetAxis("Mouse X") * rotSpeed, 0.0f, Space.World);
-            transform.Rotate(-Input.GetAxis("Mouse Y") * rotSpeed, 0.0f, 0.0f);
-        }
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal") * 0.01f * speed, Input.GetAxis("Mouse ScrollWheel") * 0.05f * speed, Input.GetAxis("Vertical") * 0.01f * speed);
+    public void PanCamera(float inX, float inY, float inZ) {
+        Vector3 movement = new Vector3(inX * 0.01f * speed, inY * 0.1f * speed, inZ * 0.01f * speed);
+
+        float oldRot = transform.localEulerAngles.x;
+        transform.Rotate(-oldRot, 0.0f, 0.0f); //cuts out x axis rotation to allow planar movement in local space
         transform.Translate(movement.x * speed, 0.0f, movement.z * speed);
         transform.Translate(0.0f, movement.y * speed, 0.0f, Space.World);
-	}
+        transform.Rotate(oldRot, 0.0f, 0.0f);
+    }
+
+    public void RotateCamera(float inX, float inY) {
+        transform.Rotate(0.0f, inX * rotSpeed, 0.0f, Space.World);
+        transform.Rotate(-inY * rotSpeed, 0.0f, 0.0f);
+    }
 
     private void CheckBounds() {
         if (transform.position.x < minBound.x) {
