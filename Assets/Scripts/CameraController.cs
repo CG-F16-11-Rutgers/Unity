@@ -10,13 +10,11 @@ public class CameraController : MonoBehaviour {
     public Vector3 maxBound;
 
 	// Use this for initialization
-	void Start () {
-	}
-	
+
     void Update() {
         CheckBounds();
     }
-
+    
     public void PanCamera(float inX, float inY, float inZ) {
         Vector3 movement = new Vector3(inX * 0.01f * speed, inY * 0.1f * speed, inZ * 0.01f * speed);
 
@@ -33,6 +31,7 @@ public class CameraController : MonoBehaviour {
     }
 
     private void CheckBounds() {
+        //position bounds
         if (transform.position.x < minBound.x) {
             transform.position = new Vector3(minBound.x, transform.position.y, transform.position.z);
         }
@@ -51,5 +50,15 @@ public class CameraController : MonoBehaviour {
         if (transform.position.z > maxBound.z) {
             transform.position = new Vector3(transform.position.x, transform.position.y, maxBound.z);
         }
+
+        //rotation bounds (non-functional)
+        /*
+        if (transform.eulerAngles.x < -90.0f) {
+            transform.Rotate(-transform.eulerAngles.x - 90.0f, 0.0f, 0.0f);
+        }
+        if (transform.eulerAngles.x > 90.0f) {
+            transform.Rotate(-transform.eulerAngles.x + 90.0f, 0.0f, 0.0f);
+        }
+        */
     }
 }
