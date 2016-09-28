@@ -43,182 +43,188 @@ public class AgentScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetButtonDown("Fire1"))     
+            leftButtonClick();
+            
+        
+        if (Input.GetButtonDown("Fire2"))
+            rightButtonClick();
+        
+    }
+
+    void leftButtonClick()
+    {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetButtonDown("Fire1"))
+        if (Physics.Raycast(ray, out hit))
         {
-            if (Physics.Raycast(ray, out hit))
+
+            if (hit.collider.tag == "Agent")
             {
-               
-                if (hit.collider.tag == "Agent")
+                selected = 0;
+                for (int i = 0; i < numberOfAgents; i++)
                 {
-                    selected = 0;
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                        selectArray[i] = false;
-                    }
-                    agents[selected].GetComponent<Renderer>().material = selectionMaterial;
-                    multipleAgents = false;
-                    return;
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
+                    selectArray[i] = false;
                 }
-                if (hit.collider.tag == "Agent1")
-                {
-                    selected = 1;
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                        selectArray[i] = false;
-                    }
-                    agents[selected].GetComponent<Renderer>().material = selectionMaterial;
-                    multipleAgents = false;
-                    return;
-                }
-                if (hit.collider.tag == "Agent2")
-                {
-                    selected = 2;
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                        selectArray[i] = false;
-                    }
-                    agents[selected].GetComponent<Renderer>().material = selectionMaterial;
-                    multipleAgents = false;
-                    return;
-                }
-                if (hit.collider.tag == "Agent3")
-                {
-                    selected = 3;
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                        selectArray[i] = false;
-                    }
-                    agents[selected].GetComponent<Renderer>().material = selectionMaterial;
-                    multipleAgents = false;
-                    return;
-                }
-                if (hit.collider.tag == "Agent4")
-                {
-                    selected = 4;
-                    for(int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                        selectArray[i] = false;
-                    }
-                    agents[selected].GetComponent<Renderer>().material = selectionMaterial;
-                    multipleAgents = false;
-                    return;
-                }
-
-                if (multipleAgents == true)
-                {
-                    multipleAgents = false;
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        if (selectArray[i] == true)
-                        {
-                            targetPosition = hit.point;
-                            agentMesh[i].SetDestination(targetPosition);
-                        }
-                    }
-                    return;
-                }
-
-                if (selected < 0)
-                {
-                    return;
-                }
-
-                targetPosition = hit.point;
-                agentMesh[selected].SetDestination(targetPosition);
-                
-                
+                agents[selected].GetComponent<Renderer>().material = selectionMaterial;
+                multipleAgents = false;
+                return;
             }
+            if (hit.collider.tag == "Agent1")
+            {
+                selected = 1;
+                for (int i = 0; i < numberOfAgents; i++)
+                {
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
+                    selectArray[i] = false;
+                }
+                agents[selected].GetComponent<Renderer>().material = selectionMaterial;
+                multipleAgents = false;
+                return;
+            }
+            if (hit.collider.tag == "Agent2")
+            {
+                selected = 2;
+                for (int i = 0; i < numberOfAgents; i++)
+                {
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
+                    selectArray[i] = false;
+                }
+                agents[selected].GetComponent<Renderer>().material = selectionMaterial;
+                multipleAgents = false;
+                return;
+            }
+            if (hit.collider.tag == "Agent3")
+            {
+                selected = 3;
+                for (int i = 0; i < numberOfAgents; i++)
+                {
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
+                    selectArray[i] = false;
+                }
+                agents[selected].GetComponent<Renderer>().material = selectionMaterial;
+                multipleAgents = false;
+                return;
+            }
+            if (hit.collider.tag == "Agent4")
+            {
+                selected = 4;
+                for (int i = 0; i < numberOfAgents; i++)
+                {
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
+                    selectArray[i] = false;
+                }
+                agents[selected].GetComponent<Renderer>().material = selectionMaterial;
+                multipleAgents = false;
+                return;
+            }
+
+            if (multipleAgents == true)
+            {
+                multipleAgents = false;
+                for (int i = 0; i < numberOfAgents; i++)
+                {
+                    if (selectArray[i] == true)
+                    {
+                        targetPosition = hit.point;
+                        agentMesh[i].SetDestination(targetPosition);
+                    }
+                }
+                return;
+            }
+
+            if (selected < 0)
+            {
+                return;
+            }
+
+            targetPosition = hit.point;
+            agentMesh[selected].SetDestination(targetPosition);
         }
-        if (Input.GetButtonDown("Fire2"))
+    }
+
+    void rightButtonClick()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
         {
-            if (Physics.Raycast(ray, out hit))
+            if (selected >= 0)
             {
-                if (selected >= 0)
+                for (int i = 0; i < numberOfAgents; i++)
                 {
-                    for (int i = 0; i < numberOfAgents; i++)
-                    {
-                        agents[i].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    selected = -1;
+                    agents[i].GetComponent<Renderer>().material = basicMaterial;
                 }
-                if (hit.collider.tag == "Agent")
-                {
-                    if (selectArray[0] == true)
-                    {
-                        selectArray[0] = false;
-                        agents[0].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    else
-                    {
-                        selectArray[0] = true;
-                        agents[0].GetComponent<Renderer>().material = selectionMaterial;
-                    } 
-                }
-                if (hit.collider.tag == "Agent1")
-                {
-                    if (selectArray[1] == true)
-                    {
-                        selectArray[1] = false;
-                        agents[1].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    else
-                    {
-                        selectArray[1] = true;
-                        agents[1].GetComponent<Renderer>().material = selectionMaterial;
-                    }
-                }
-                if (hit.collider.tag == "Agent2")
-                {
-                    if (selectArray[2] == true)
-                    {
-                        selectArray[2] = false;
-                        agents[2].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    else
-                    {
-                        selectArray[2] = true;
-                        agents[2].GetComponent<Renderer>().material = selectionMaterial;
-                    }
-                }
-                if (hit.collider.tag == "Agent3")
-                {
-                    if (selectArray[3] == true)
-                    {
-                        selectArray[3] = false;
-                        agents[3].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    else
-                    {
-                        selectArray[3] = true;
-                        agents[3].GetComponent<Renderer>().material = selectionMaterial;
-                    }
-                }
-                if (hit.collider.tag == "Agent4")
-                {
-                    if (selectArray[4] == true)
-                    {
-                        selectArray[4] = false;
-                        agents[4].GetComponent<Renderer>().material = basicMaterial;
-                    }
-                    else
-                    {
-                        selectArray[4] = true;
-                        agents[4].GetComponent<Renderer>().material = selectionMaterial;
-                    }
-                }
-                multipleAgents = true;
+                selected = -1;
             }
+            if (hit.collider.tag == "Agent")
+            {
+                if (selectArray[0] == true)
+                {
+                    selectArray[0] = false;
+                    agents[0].GetComponent<Renderer>().material = basicMaterial;
+                }
+                else
+                {
+                    selectArray[0] = true;
+                    agents[0].GetComponent<Renderer>().material = selectionMaterial;
+                }
+            }
+            if (hit.collider.tag == "Agent1")
+            {
+                if (selectArray[1] == true)
+                {
+                    selectArray[1] = false;
+                    agents[1].GetComponent<Renderer>().material = basicMaterial;
+                }
+                else
+                {
+                    selectArray[1] = true;
+                    agents[1].GetComponent<Renderer>().material = selectionMaterial;
+                }
+            }
+            if (hit.collider.tag == "Agent2")
+            {
+                if (selectArray[2] == true)
+                {
+                    selectArray[2] = false;
+                    agents[2].GetComponent<Renderer>().material = basicMaterial;
+                }
+                else
+                {
+                    selectArray[2] = true;
+                    agents[2].GetComponent<Renderer>().material = selectionMaterial;
+                }
+            }
+            if (hit.collider.tag == "Agent3")
+            {
+                if (selectArray[3] == true)
+                {
+                    selectArray[3] = false;
+                    agents[3].GetComponent<Renderer>().material = basicMaterial;
+                }
+                else
+                {
+                    selectArray[3] = true;
+                    agents[3].GetComponent<Renderer>().material = selectionMaterial;
+                }
+            }
+            if (hit.collider.tag == "Agent4")
+            {
+                if (selectArray[4] == true)
+                {
+                    selectArray[4] = false;
+                    agents[4].GetComponent<Renderer>().material = basicMaterial;
+                }
+                else
+                {
+                    selectArray[4] = true;
+                    agents[4].GetComponent<Renderer>().material = selectionMaterial;
+                }
+            }
+            multipleAgents = true;
         }
-
-
-
     }
 }
