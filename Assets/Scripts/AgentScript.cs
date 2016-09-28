@@ -37,7 +37,6 @@ public class AgentScript : MonoBehaviour
         {
             agentMesh[i] = agents[i].GetComponent<NavMeshAgent>();
         }
-        //GetComponent<Renderer>().material.SetColor("SelectedAgent", Color.black);
     }
 
     // Update is called once per frame
@@ -131,6 +130,7 @@ public class AgentScript : MonoBehaviour
                         targetPosition = hit.point;
                         agentMesh[i].SetDestination(targetPosition);
                     }
+                   
                 }
                 return;
             }
