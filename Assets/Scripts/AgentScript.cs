@@ -151,28 +151,68 @@ public class AgentScript : MonoBehaviour
                 }
                 if (hit.collider.tag == "Agent")
                 {
-                    selectArray[0] = true;
-                    agents[0].GetComponent<Renderer>().material = selectionMaterial;
+                    if (selectArray[0] == true)
+                    {
+                        selectArray[0] = false;
+                        agents[0].GetComponent<Renderer>().material = basicMaterial;
+                    }
+                    else
+                    {
+                        selectArray[0] = true;
+                        agents[0].GetComponent<Renderer>().material = selectionMaterial;
+                    } 
                 }
                 if (hit.collider.tag == "Agent1")
                 {
-                    selectArray[1] = true;
-                    agents[1].GetComponent<Renderer>().material = selectionMaterial;
+                    if (selectArray[1] == true)
+                    {
+                        selectArray[1] = false;
+                        agents[1].GetComponent<Renderer>().material = basicMaterial;
+                    }
+                    else
+                    {
+                        selectArray[1] = true;
+                        agents[1].GetComponent<Renderer>().material = selectionMaterial;
+                    }
                 }
                 if (hit.collider.tag == "Agent2")
                 {
-                    selectArray[2] = true;
-                    agents[2].GetComponent<Renderer>().material = selectionMaterial;
+                    if (selectArray[2] == true)
+                    {
+                        selectArray[2] = false;
+                        agents[2].GetComponent<Renderer>().material = basicMaterial;
+                    }
+                    else
+                    {
+                        selectArray[2] = true;
+                        agents[2].GetComponent<Renderer>().material = selectionMaterial;
+                    }
                 }
                 if (hit.collider.tag == "Agent3")
                 {
-                    selectArray[3] = true;
-                    agents[3].GetComponent<Renderer>().material = selectionMaterial;
+                    if (selectArray[3] == true)
+                    {
+                        selectArray[3] = false;
+                        agents[3].GetComponent<Renderer>().material = basicMaterial;
+                    }
+                    else
+                    {
+                        selectArray[3] = true;
+                        agents[3].GetComponent<Renderer>().material = selectionMaterial;
+                    }
                 }
                 if (hit.collider.tag == "Agent4")
                 {
-                    selectArray[4] = true;
-                    agents[4].GetComponent<Renderer>().material = selectionMaterial;
+                    if (selectArray[4] == true)
+                    {
+                        selectArray[4] = false;
+                        agents[4].GetComponent<Renderer>().material = basicMaterial;
+                    }
+                    else
+                    {
+                        selectArray[4] = true;
+                        agents[4].GetComponent<Renderer>().material = selectionMaterial;
+                    }
                 }
                 multipleAgents = true;
             }
