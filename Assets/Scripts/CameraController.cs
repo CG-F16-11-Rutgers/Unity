@@ -10,25 +10,28 @@ public class CameraController : MonoBehaviour {
     public Vector3 maxBound;
 
 	// Use this for initialization
-	void Start () {
-	}
-	
+
     void Update() {
         CheckBounds();
     }
+    
+    public void PanCamera(float inX, float inY, float inZ) {
+        Vector3 movement = new Vector3(inX * 0.01f * speed, inY * 0.1f * speed, inZ * 0.01f * speed);
 
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (Input.GetButton("Fire3")) {
-            transform.Rotate(0.0f, Input.GetAxis("Mouse X") * rotSpeed, 0.0f, Space.World);
-            transform.Rotate(-Input.GetAxis("Mouse Y") * rotSpeed, 0.0f, 0.0f);
-        }
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal") * 0.01f * speed, Input.GetAxis("Mouse ScrollWheel") * 0.05f * speed, Input.GetAxis("Vertical") * 0.01f * speed);
+        float oldRot = transform.localEulerAngles.x;
+        transform.Rotate(-oldRot, 0.0f, 0.0f); //cuts out x axis rotation to allow planar movement in local space
         transform.Translate(movement.x * speed, 0.0f, movement.z * speed);
         transform.Translate(0.0f, movement.y * speed, 0.0f, Space.World);
-	}
+        transform.Rotate(oldRot, 0.0f, 0.0f);
+    }
+
+    public void RotateCamera(float inX, float inY) {
+        transform.Rotate(0.0f, inX * rotSpeed, 0.0f, Space.World);
+        transform.Rotate(-inY * rotSpeed, 0.0f, 0.0f);
+    }
 
     private void CheckBounds() {
+        //position bounds
         if (transform.position.x < minBound.x) {
             transform.position = new Vector3(minBound.x, transform.position.y, transform.position.z);
         }
@@ -47,5 +50,15 @@ public class CameraController : MonoBehaviour {
         if (transform.position.z > maxBound.z) {
             transform.position = new Vector3(transform.position.x, transform.position.y, maxBound.z);
         }
+
+        //rotation bounds (non-functional)
+        /*
+        if (transform.eulerAngles.x < -90.0f) {
+            transform.Rotate(-transform.eulerAngles.x - 90.0f, 0.0f, 0.0f);
+        }
+        if (transform.eulerAngles.x > 90.0f) {
+            transform.Rotate(-transform.eulerAngles.x + 90.0f, 0.0f, 0.0f);
+        }
+        */
     }
 }
