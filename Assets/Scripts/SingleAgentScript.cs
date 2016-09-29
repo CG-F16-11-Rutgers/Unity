@@ -11,14 +11,20 @@ public class SingleAgentScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        agent = GetComponent<NavMeshAgent>();    
-
+        agent = GetComponent<NavMeshAgent>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    
 	}
+
+    void OnCollisionEnter(Collision collision) {
+        if (collision.transform.gameObject.CompareTag("Player")) {
+            if(agent.remainingDistance < 3) {
+                agent.Stop();
+            }
+        }
+    }
 
     public void select()
     {
@@ -32,6 +38,7 @@ public class SingleAgentScript : MonoBehaviour {
 
     public void moveToTarget(Vector3 targetPosition)
     {
+        agent.Resume();
         agent.SetDestination(targetPosition);
     }
 

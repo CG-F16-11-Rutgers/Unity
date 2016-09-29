@@ -7,6 +7,7 @@ public class Director : MonoBehaviour {
     public GameObject mainCamera; private CameraController camCtrl;
 
     private List<GameObject> selectedObjects = new List<GameObject>();
+    private GameObject dynamicOb;
     private bool objectMoveFocus;
 
 	// Use this for initialization
@@ -27,7 +28,7 @@ public class Director : MonoBehaviour {
             MoveCamera();
         }
         else {
-            //MoveObstacle()
+            dynamicOb.GetComponent<DObsticalController>().move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
     }
 
@@ -45,17 +46,32 @@ public class Director : MonoBehaviour {
             GameObject hitObject = hit.transform.gameObject;
             if(hitObject.CompareTag("Player")) {
                 selectedObjects.Add(hitObject);
-                //call object and SELECT
+                hitObject.GetComponent<SingleAgentScript>().select();
             }
             else if (hitObject.CompareTag("ob")) {
+                DeselectAll();
                 objectMoveFocus = true;
-                //clear other selected objects, select obstacle
+                dynamicOb = hitObject;
+                dynamicOb.GetComponent<DObsticalController>().select();
             }
             else {
-                objectMoveFocus = false;
-                selectedObjects.Clear();
+                DeselectAll();
             }
         }
+    }
+
+    private void DeselectAll() {
+        if (objectMoveFocus) {
+            dynamicOb = null;
+            objectMoveFocus = false;
+        }
+        for (int i = 0; i < selectedObjects.Count; i++) {
+            GameObject obj = selectedObjects[i];
+            if (obj.CompareTag("Player")) {
+                obj.GetComponent<SingleAgentScript>().deselect();
+            }
+        }
+        selectedObjects.Clear();
     }
 
     private void OrderMove() {
@@ -69,7 +85,7 @@ public class Director : MonoBehaviour {
         for (int i=0; i<selectedObjects.Count;i++) {
             GameObject obj = selectedObjects[i];
             if(obj.CompareTag("Player")) {
-                obj.GetComponent<SimpleAgentScript>().moveToTarget(targetPos);
+                obj.GetComponent<SingleAgentScript>().moveToTarget(targetPos);
             }
         }
     }
