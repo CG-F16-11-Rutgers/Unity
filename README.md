@@ -19,6 +19,7 @@ The requirements that we had to meet were:
 - Refine agent navigation (collision with each other)
 - Dynamic obstacles
 - Different weight Planes
+
 Although there were a few small bugs in our assignments, we were able to meet most of these requirements. 
 The only problem with our project was that we were unable to finish creating dynamic obstacles.
 This was due to the communication problems we had in our group.
