@@ -23,11 +23,10 @@ GameObject:
   - 136: {fileID: 136000013728924952}
   - 23: {fileID: 23000011033967802}
   - 195: {fileID: 195000010253814818}
-  - 114: {fileID: 114000012884729436}
   - 54: {fileID: 54000011422898214}
   m_Layer: 0
   m_Name: Agents
-  m_TagString: Player
+  m_TagString: Agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,19 +95,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114000012884729436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011575373696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cddfa7032c7294b8ca3c098c5f653c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionMaterial: {fileID: 0}
-  basicMaterial: {fileID: 0}
 --- !u!136 &136000013728924952
 CapsuleCollider:
   m_ObjectHideFlags: 1
