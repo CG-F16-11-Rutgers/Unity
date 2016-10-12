@@ -11,34 +11,36 @@ public class AvatarController : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
         animator.SetBool("isWalking", false);
         animator.SetBool("turnRight", false);
+        animator.SetBool("turnLeft", false);
         animator.SetBool("jump", false);
         animator.SetBool("isWalkingBack", false);
-	    if (Input.GetKey(KeyCode.I))
+	    if (Input.GetKey(KeyCode.W))
         {
             animator.SetBool("isWalking", true);
             //transform.Translate(Vector3.forward * movingSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKey(KeyCode.S))
+        {
+            //transform.Translate(Vector3.back * movingSpeed * Time.deltaTime);
+            animator.SetBool("isWalkingBack", true);
+        }
+        if (Input.GetKey(KeyCode.D))
         {
             animator.SetBool("turnRight", true);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("turnLeft", true);
         }
         if (Input.GetKey(KeyCode.Space))
         {
             animator.SetBool("jump", true);
         }
-        if (Input.GetKey(KeyCode.K))
-        {
-            //transform.Translate(Vector3.back * movingSpeed * Time.deltaTime);
-            animator.SetBool("isWalkingBack", true);
-        }
+      
 	}
 }

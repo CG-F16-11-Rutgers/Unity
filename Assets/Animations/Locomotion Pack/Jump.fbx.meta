@@ -510,7 +510,7 @@ ModelImporter:
       name: Jump
       takeName: Jump
       firstFrame: 261
-      lastFrame: 338
+      lastFrame: 341
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -533,7 +533,7 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 256
     isReadable: 1
   meshes:
     lODScreenPercentages: []
