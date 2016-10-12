@@ -11,14 +11,14 @@ NavMeshAreas:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
+  - name: Wood Area
     cost: 1
-  - name: 
+  - name: Sand Area
     cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: Mud
+    cost: 100
+  - name: Swamp
+    cost: 150
   - name: 
     cost: 1
   - name: 

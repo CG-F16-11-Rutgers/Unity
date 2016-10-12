@@ -40,7 +40,11 @@ Transform:
   m_GameObject: {fileID: 1000010135966104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.27, y: 0.5833335, z: 4.5035686}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalScale: {x: 3, y: 3, z: 3}
+>>>>>>> 80489296abe13580dee361027051a94a1142e64e
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +62,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  - {fileID: 2100000, guid: be676e264b1f4814196060e3ab33d07b, type: 2}
+>>>>>>> 80489296abe13580dee361027051a94a1142e64e
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -102,7 +110,11 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010135966104}
+<<<<<<< HEAD
   m_Material: {fileID: 13400000, guid: 463488e3ebf6c9c40a06e109d47eb63d, type: 2}
+=======
+  m_Material: {fileID: 0}
+>>>>>>> 80489296abe13580dee361027051a94a1142e64e
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
