@@ -10,15 +10,17 @@ public class SampleAgent : MonoBehaviour
     private NavMeshAgent agent;
     
     private Animator animator;
-    
+    private bool jumping;
 
     // Use this for initialization
     void Start()
     {
+        
         agent = GetComponent<NavMeshAgent>();
         agent.speed = agent.speed * speed;
         targetPosition = transform.position;
 
+        jumping = false;
         animator = GetComponent<Animator>();
 
     }
@@ -26,17 +28,35 @@ public class SampleAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (agent.remainingDistance < 1.0F)
         {
 
-            Debug.Log("I love big butts and I cannot lie");
+            //Debug.Log("I love big butts and I cannot lie");
             agent.velocity = Vector3.zero;
             agent.ResetPath();
             animator.SetBool("isWalking", false);
         }
         else
         {
-            Debug.Log("Grab em by the Pussy!");
+            if(agent.isOnOffMeshLink)
+            {
+                Debug.Log("Jump TIme");
+                animator.SetBool("walkToJump", true);
+                jumping = true;
+            }
+            else
+            {
+                if(jumping)
+                {
+                    Debug.Log("STOP");
+                    animator.SetBool("walkToJump", false);
+                    jumping = false;
+                }
+               
+            }
+           
            // agent.SetDestination(targetPosition);
         }
     }
