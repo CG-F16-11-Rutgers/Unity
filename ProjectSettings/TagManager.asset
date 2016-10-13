@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Agent
+<<<<<<< HEAD
+=======
+  - Agent1
+  - Agent2
+  - Agent3
+  - Agent4
+>>>>>>> 49ea4018192e74d30650b7840fc2f1b6f26486de
   layers:
   - Default
   - TransparentFX
