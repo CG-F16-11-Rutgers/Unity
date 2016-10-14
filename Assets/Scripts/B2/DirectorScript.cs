@@ -31,6 +31,7 @@ public class DirectorScript : MonoBehaviour {
 	void Update () {
         if (mode == 0) {
             float hor, fwd, vert, rot;
+            bool running = false;
 
             if (Input.GetKey(KeyCode.LeftAlt)) {
                 transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f, Space.World); //rotate camera based on mouse movement ONLY WHILE LALT HELD
@@ -49,6 +50,9 @@ public class DirectorScript : MonoBehaviour {
             else {
                 vert = 0.0f;
             }
+            if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+                running = true;
+            }
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 if(Cursor.lockState == CursorLockMode.Locked) {
                     Cursor.lockState = CursorLockMode.None;
@@ -57,7 +61,7 @@ public class DirectorScript : MonoBehaviour {
                     Cursor.lockState = CursorLockMode.Locked;
                 }
             }
-            //CHARACTER.move(hor, fwd, vert, rot); - TO BE IMPLEMENTED
+            //CHARACTER.move(hor, fwd, vert, rot, running); - TO BE IMPLEMENTED
         }
         else if(mode == 1) {
             if(Input.GetButton("Fire2")) {
