@@ -51,7 +51,8 @@ public class AutoAgent : MonoBehaviour {
                 agent.SetDestination(targetPosition);
                 firstGoal = false;
 
-
+                rD = float.MaxValue;
+                firstTime = true;
             }
             else
             {
