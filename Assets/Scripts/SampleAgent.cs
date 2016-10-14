@@ -73,7 +73,9 @@ public class SampleAgent : MonoBehaviour
             {
 
                 animator.SetBool("isWalking", true);
-              //  walking = true;
+                animator.SetFloat("Speed", 1.0f);
+
+                //  walking = true;
                 targetPosition = hit.point;
                 agent.SetDestination(targetPosition);
                 moving = true;
@@ -85,6 +87,7 @@ public class SampleAgent : MonoBehaviour
             if(moving)
             {
                 animator.SetBool("shiftPressed", true);
+
                // walking = false;
             }
         }
