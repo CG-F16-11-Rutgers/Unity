@@ -42,7 +42,6 @@ public class AutoAgent : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(agent.remainingDistance);
         if (rD < 2.0)
         {
             if (firstGoal == true)
@@ -90,7 +89,7 @@ public class AutoAgent : MonoBehaviour {
                 animator.SetFloat("Speed", 1.0f);
 
             }
-            Debug.Log("fhfhfhffj0");
+          
             agent.SetDestination(targetPosition);
         }
         if(firstTime==false)
