@@ -1,26 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SampleAgent : MonoBehaviour
-{
-    public float speed;
+public class AutoAgent : MonoBehaviour {
+
+    private float speed= 0.1F;
+
+    public GameObject goal;
 
     private Vector3 targetPosition;
 
     private NavMeshAgent agent;
-    
+
     private Animator animator;
     private bool jumping;
     private bool moving;
-   // private bool walking;
+    // private bool walking;
 
     // Use this for initialization
     void Start()
     {
-        
+
         agent = GetComponent<NavMeshAgent>();
         agent.speed = agent.speed * speed;
-        targetPosition = transform.position;
+
+
+        targetPosition = goal.transform.position;
 
         jumping = false;
         moving = false;
@@ -34,8 +38,10 @@ public class SampleAgent : MonoBehaviour
     {
 
 
-        if (agent.remainingDistance < 1.0F)
+        if (agent.remainingDistance < 1.0)
         {
+            Debug.Log("YOYOYO");
+
             agent.velocity = Vector3.zero;
             agent.ResetPath();
             animator.SetBool("isWalking", false);
@@ -44,55 +50,23 @@ public class SampleAgent : MonoBehaviour
         }
         else
         {
-            if(agent.isOnOffMeshLink)
+            if (agent.isOnOffMeshLink)
             {
                 animator.SetBool("jump", true);
                 jumping = true;
             }
             else
             {
-                if(jumping)
+                if (jumping)
                 {
                     animator.SetBool("jump", false);
                     jumping = false;
                 }
-               
-            }
-           
-           // agent.SetDestination(targetPosition);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        { 
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-
                 animator.SetBool("isWalking", true);
-              //  walking = true;
-                targetPosition = hit.point;
-                agent.SetDestination(targetPosition);
-                moving = true;
 
             }
-        }
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            if(moving)
-            {
-                animator.SetBool("shiftPressed", true);
-               // walking = false;
-            }
-        }
-        else
-        {
-            animator.SetBool("shiftPressed", false);
-          //  walking = true;
+            Debug.Log("fhfhfhffj0");
+            agent.SetDestination(targetPosition);
         }
     }
-
 }

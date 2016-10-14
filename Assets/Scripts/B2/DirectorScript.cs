@@ -17,12 +17,12 @@ public class DirectorScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if(mode == 0) {
+        /*if(mode == 0) {
             transform.parent = playerChar.GetComponent<Transform>();
             Cursor.lockState = CursorLockMode.Locked; //lock mouse to center of screen on load - * * * * * CURRENTLY NO DISABLE, MUST BE IMPLEMENTED PRIOR TO SUBMISSION * * * * *
             startRot = transform.rotation; //starting rotation of transform
-        }
-        else if (mode == 1) {
+        }*/
+        if (mode == 1) {
             transform.parent = null;
         }
 	}
@@ -31,7 +31,8 @@ public class DirectorScript : MonoBehaviour {
 	void Update () {
         if (mode == 0) {
             float hor, fwd, vert, rot;
-
+            transform.position = playerChar.GetComponent<Transform>().position;
+            transform.Translate(0.0f, 1.0f, 0.0f, Space.World);
             if (Input.GetKey(KeyCode.LeftAlt)) {
                 transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f, Space.World); //rotate camera based on mouse movement ONLY WHILE LALT HELD
                 rot = Input.GetAxis("Horizontal"); //when LALT HELD - rotational movement of character based on A/D <-/->
@@ -49,14 +50,14 @@ public class DirectorScript : MonoBehaviour {
             else {
                 vert = 0.0f;
             }
-            if(Input.GetKeyDown(KeyCode.Escape)) {
+            /*if(Input.GetKeyDown(KeyCode.Escape)) {
                 if(Cursor.lockState == CursorLockMode.Locked) {
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else {
                     Cursor.lockState = CursorLockMode.Locked;
                 }
-            }
+            }*/
             //CHARACTER.move(hor, fwd, vert, rot); - TO BE IMPLEMENTED
         }
         else if(mode == 1) {

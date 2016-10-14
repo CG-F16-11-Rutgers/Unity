@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//[RequireComponent(typeof(Rigidbody))]
 public class AvatarController : MonoBehaviour {
 
     //public int movingSpeed = 100;
@@ -14,13 +15,26 @@ public class AvatarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        float d = Input.GetAxis("Horizontal");
+        
+        
+
+        float s = Input.GetAxis("Vertical");
         animator.SetBool("isWalking", false);
+        if (s != 0)
+        {
+            animator.SetBool("isWalking", true);
+            //transform.Translate(Vector3.forward * movingSpeed * Time.deltaTime);
+        }
+        animator.SetFloat("Direction", d);
+        animator.SetFloat("Speed", s);
+        
         animator.SetBool("turnRight", false);
         animator.SetBool("turnLeft", false);
         animator.SetBool("jump", false);
         animator.SetBool("isWalkingBack", false);
         animator.SetBool("shiftPressed", false);
-        if (Input.GetKey(KeyCode.W))
+        /*if (Input.GetKey(KeyCode.W))
         {
             animator.SetBool("isWalking", true);
             //transform.Translate(Vector3.forward * movingSpeed * Time.deltaTime);
@@ -37,7 +51,7 @@ public class AvatarController : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             animator.SetBool("turnLeft", true);
-        }
+        }*/
         if (Input.GetKey(KeyCode.Space))
         {
             animator.SetBool("jump", true);
